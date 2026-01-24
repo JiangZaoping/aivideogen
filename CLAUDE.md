@@ -81,3 +81,7 @@ Explains the relationship between ComfyUI workflow platform and video generation
 - All documentation should be kept up-to-date with the latest AI video generation landscape
 - When adding new models or tools, follow the established analytical framework
 
+
+## Git Preferences
+- Always include "Co-authored-by: Claude <claude@anthropic.com>" in commit messages.
+- Always ask for confirmation before pushing to 'main' or 'master' branches.
