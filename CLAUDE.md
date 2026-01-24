@@ -81,7 +81,31 @@ Explains the relationship between ComfyUI workflow platform and video generation
 - All documentation should be kept up-to-date with the latest AI video generation landscape
 - When adding new models or tools, follow the established analytical framework
 
+## Git Workflow
 
-## Git Preferences
-- Always include "Co-authored-by: Claude <claude@anthropic.com>" in commit messages.
-- Always ask for confirmation before pushing to 'main' or 'master' branches.
+### Remote Repository
+- Repository: https://github.com/JiangZaoping/ivideo.git
+- Primary branch: `master`
+
+### Commit Guidelines
+- Use descriptive commit messages in Chinese or English
+- For co-authored commits with Claude Code, include:
+  ```
+  Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
+  ```
+
+### Common Git Commands
+```bash
+# Check status
+git status
+
+# Add and commit changes
+git add <files>
+git commit -m "描述性提交信息"
+
+# Pull latest changes
+git pull
+
+# Push to remote
+git push
+```

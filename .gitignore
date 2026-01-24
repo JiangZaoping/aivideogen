@@ -3,9 +3,9 @@ node_modules/
 package-lock.json
 
 # Generated Word documents
-*.docx
-~$*.docx
-~$*.doc
+# *.docx
+# ~$*.docx
+# ~$*.doc
 
 # OS files
 .DS_Store
