@@ -4,115 +4,80 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an AI video generation research and documentation project (aiv - AI Video). The repository contains market research reports on AI video generation models, technical documentation, and tools for generating formatted documents.
+This is an AI video generation research and documentation project (ivideo - AI Video). The repository contains comprehensive market research reports and technical documentation on AI video generation models.
 
-### Key Artifacts
-
-- **AI视频生成模型市场报告_2025.md**: Comprehensive market analysis of AI video generation models (open-source and closed-source)
-- **ComfyUI与视频大模型关系详解.md**: Technical documentation explaining the relationship between ComfyUI and video generation models
-- **generate_docx.js**: Node.js script that converts markdown reports to formatted Word documents (.docx)
-
-## Development Commands
-
-### Generate Word Document from Markdown
-
-The `generate_docx.js` script creates a professionally formatted Word document with embedded content:
-
-```bash
-# Install dependencies (first time only)
-npm install
-
-# Generate the Word document
-node generate_docx.js
-```
-
-**Output**: `AI视频生成模型市场报告_2025.docx`
-
-### Dependencies
-
-- **docx** (^9.5.1): JavaScript library for creating .docx files
-- **Node.js**: Required runtime
-
-## Code Architecture
-
-### Document Generation Pipeline
+## Repository Structure
 
 ```
-Markdown Source (AI视频生成模型市场报告_2025.md)
-    ↓
-generate_docx.js (Node.js + docx library)
-    ↓
-Word Document (.docx with formatted tables, headings, links)
+ivideo/
+├── docs/                                    # All documentation and reports
+│   ├── AI视频生成模型市场报告_2025.md        # Market analysis (markdown source)
+│   ├── AI视频生成模型市场报告_2025.docx      # Formatted Word export
+│   └── ComfyUI与视频大模型关系详解.md        # Technical documentation
+├── .gitignore                               # Excludes node_modules, .docx, temp files
+└── CLAUDE.md                                # This file
 ```
 
-### Key Components in generate_docx.js
+## Key Documentation
 
-1. **Helper Functions**: Reusable components for document elements
-   - `createHeading(text, level)`: Creates H1-H4 headings with color coding
-   - `createParagraph(text, options)`: Creates formatted paragraphs
-   - `createBulletItem(text)`: Creates bulleted list items
-   - `createHyperlink(text, url)`: Creates clickable hyperlinks
-   - `createTableRow(cells, isHeader)`: Creates table rows with borders
+### 1. AI视频生成模型市场报告_2025.md (Market Report)
 
-2. **Document Structure**:
-   - Uses `docx` library's Document, Packer, Paragraph, TextRun, Table components
-   - Defines custom styles for hierarchical headings (H1-H4)
-   - Implements table borders, cell shading, and vertical alignment
-   - Includes page breaks and external hyperlinks
+Comprehensive analysis covering:
+- **闭源/商业模型**: Sora 2, Veo 3, Runway Gen-4, Pika 2.0, Kling 1.6, 即梦, 清影
+- **开源模型**: HunyuanVideo, LTX-Video, Stable Video Diffusion, AnimateDiff, Wan 2.1
+- **对比分析**: Performance tables, pros/cons, selection guidance
+- **行业趋势**: Multimodal integration, Chinese vendor rise, gap narrowing
+- **技术选型**: Deployment roadmaps by budget and technical capability
+- **未来展望**: 2025-2026 predictions
 
-3. **Numbering Configuration**:
-   - Single bullet list reference: `"bullet-list"`
-   - Uses `LevelFormat.BULLET` constant (NOT the string "bullet")
+### 2. ComfyUI与视频大模型关系详解.md (Technical Guide)
 
-### Document Styling Standards
+Explains the relationship between ComfyUI workflow platform and video generation models, including integration methods and use cases.
 
-- **Font**: Arial (universal compatibility)
-- **Heading Colors**:
-  - H1: `#1F4E78` (dark blue)
-  - H2: `#2E5090` (medium blue)
-  - H3: `#375623` (green)
-- **Table Headers**: Light blue background (`#D5E8F0`) with centered text
-- **Margins**: 1 inch (1440 DXA) on all sides
-- **Page Size**: Letter format
+## Documentation Standards
 
-### Critical Formatting Rules
-
-1. **Never use `\n` for line breaks** - Always use separate Paragraph elements
-2. **Table column widths**: Must set BOTH `columnWidths` array at table level AND individual cell `width` properties
-3. **Shading type**: Always use `ShadingType.CLEAR` (never `ShadingType.SOLID`, causes black backgrounds)
-4. **PageBreak**: Must be inside a Paragraph children array, never standalone
-5. **ImageRun**: Requires `type` parameter ("png", "jpg", etc.)
-6. **Hyperlinks**: Use `ExternalHyperlink` class with `style: "Hyperlink"` for blue underlined links
+### File Naming
+- Markdown reports: `主题_报告_YYYY.md` (Chinese title with year)
+- Word exports: Match markdown filename with `.docx` extension
+- Use descriptive Chinese titles for clarity
 
 ### Content Organization
+- Reports should include: overview, detailed analysis, comparisons, trends, recommendations, resources, outlook
+- Use markdown tables for model comparisons and specifications
+- Include external hyperlinks to official documentation and resources
+- Maintain consistent heading hierarchy (H1 for title, H2 for sections, H3 for subsections)
 
-The Word document contains 8 main sections:
+### Language Preferences
+- **Primary language**: Simplified Chinese (简体中文)
+- **Technical terms**: English names preserved (e.g., "Sora", "HunyuanVideo", "ComfyUI")
+- **Code/identifiers**: English only (if applicable in future)
 
-1. **闭源/商业视频生成模型** (Closed-source models): Sora 2, Veo 3, Runway, Pika, Kling, 即梦, 清影
-2. **开源视频生成模型** (Open-source models): HunyuanVideo, LTX-Video, SVD, AnimateDiff, Wan 2.1
-3. **综合对比分析** (Comparative analysis): Performance tables, pros/cons
-4. **行业趋势分析** (Industry trends): Gap narrowing, multimodal integration, Chinese vendors
-5. **选择建议** (Selection guidance): By use case, budget, technical ability
-6. **技术选型建议** (Technical selection): Deployment roadmaps, subscription comparisons
-7. **学习资源** (Learning resources): Official links, community tutorials
-8. **未来展望** (Future outlook): 2025-2026 predictions
+## Working with Documentation
 
-## File Naming Conventions
+### Adding New Reports
+1. Create markdown file in `docs/` with naming pattern: `主题_报告_YYYY.md`
+2. Follow existing report structure for consistency
+3. Include all 8 standard sections (if applicable): models overview, comparative analysis, trends, recommendations, technical selection, resources, outlook, references
 
-- Markdown reports: `*_报告_*.md` (Chinese title with date)
-- Word documents: `*_报告_*.docx` (matching markdown source)
-- Generated scripts: `generate_*.js` (descriptive names)
+### Updating Existing Reports
+- Markdown files are the single source of truth
+- Update dates and version numbers when models change
+- Keep external links current and functional
+- Maintain table formatting consistency
 
-## Language Preferences
-
-- **Documentation**: Simplified Chinese (简体中文) by default
-- **Code comments**: Chinese or English as appropriate
-- **Variable names**: English (standard JavaScript conventions)
+### Exporting to Word
+- Word documents (`.docx`) are generated from markdown sources
+- Generated Word files are tracked in git for convenience
+- If regeneration is needed, implement a markdown-to-docx converter matching the existing formatting standards:
+  - Font: Arial
+  - Heading colors: H1 (#1F4E78), H2 (#2E5090), H3 (#375623)
+  - Table headers: Light blue background (#D5E8F0)
+  - Margins: 1 inch on all sides
 
 ## Important Notes
 
-- The markdown source files are the single source of truth for content
-- `generate_docx.js` hardcodes the document structure (not a generic markdown-to-docx converter)
-- When adding new content to reports, update BOTH the markdown file AND the JavaScript generation script
-- Table column widths use DXA units (twentieths of a point): 1440 = 1 inch, Letter usable width = 9360 DXA
-- External links must use proper URL encoding for special characters
+- This is a **documentation-only repository** (no application code)
+- `.gitignore` excludes `node_modules/` and build artifacts, but tracks generated `.docx` files
+- All documentation should be kept up-to-date with the latest AI video generation landscape
+- When adding new models or tools, follow the established analytical framework
+
